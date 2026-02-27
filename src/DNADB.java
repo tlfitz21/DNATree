@@ -145,7 +145,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String search(String sequence) {
-        // look at me im so good at programming I finished search already
+        //testing tanner's overwrite
         
         if (sequence == null) {
             return "Bad input: Sequence may not be null";
