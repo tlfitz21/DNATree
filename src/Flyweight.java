@@ -1,0 +1,23 @@
+
+public class Flyweight implements Node {
+
+    /**
+     * 
+     * part of the recursive insert algorithm. this acts as the base case
+     * 
+     * @param inSeq
+     *            the sequence to be inserted
+     * @param depth
+     *            the current depth of the node within the entire tree
+     * @return
+     *         returns the new leaf, representing the new "root" that is at the
+     *         position
+     *         that this node was in when it was called
+     */
+    public Node insert(String inSeq, int depth) {
+
+        Leaf newLeaf = new Leaf(inSeq);
+        return newLeaf;
+
+    }
+}
