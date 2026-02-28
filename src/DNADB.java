@@ -109,8 +109,9 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String print() {
-        return null;
-        //tanner's change
+        
+        return "tree dump:\n" + root.print('r');
+
     }
 
 
@@ -121,7 +122,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String printLengths() {
-        return null;
+        return "tree dump with lengths:\n" +  root.print('l');
     }
 
 
@@ -132,7 +133,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String printStats() {
-        return null;
+        return "tree dump with stats:\n" +  root.print('s');
     }
 
 
@@ -145,7 +146,6 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String search(String sequence) {
-        //testing tanner's overwrite
         
         if (sequence == null) {
             return "Bad input: Sequence may not be null";

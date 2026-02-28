@@ -20,4 +20,15 @@ public class Flyweight implements Node {
         return newLeaf;
 
     }
+    
+    /**
+     * part of the recursive insert algorithm. one of the base cases
+     * 
+     * @param type
+     *              the type of print function
+     * @return "E" for empty
+     */
+    public String print(char type) {
+        return "E";
+    }
 }

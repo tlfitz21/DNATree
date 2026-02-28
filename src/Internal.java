@@ -131,9 +131,41 @@ public class Internal implements Node {
         //is pointing to, and set the pointer to it in case it changes
         setPoint(letter, getPoint(letter).insert(sequence, depth + 1));
 
-        return this;
-       
+        return this;       
     }
     
+    public String print(char type) {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("I\n  ");
+        sb.append(pointA.print(type) + "\n  ");
+        sb.append(pointC.print(type) + "\n  ");
+        sb.append(pointG.print(type) + "\n  ");
+        sb.append(pointT.print(type) + "\n  ");
+        sb.append(pointD.print(type));
+        
+        return sb.toString();
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

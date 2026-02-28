@@ -20,4 +20,21 @@ public interface Node {
      *         -the internal method returns itself
      */
     public Node insert(String sequence, int depth);
+    
+    /**
+     * 
+     * Recursive print function. calls itself recursively to print the contents
+     * or type of each node. There are three print methods, and DNADB.print will
+     * pass a different character to this type parameter to tell it which one
+     * to do
+     * 
+     * @param type
+     *          the type of print method we want to use.
+     *          -r: regular print
+     *          -l: lengths print
+     *          -s: stats print
+     * @return
+     *          the string to be print
+     */
+    public String print(char type);
 }

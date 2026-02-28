@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 /**
  * This is a subclass of Node. It contains data for he DNA sequence, but no
  * pointers
@@ -72,6 +73,62 @@ public class Leaf implements Node {
         Internal temp = new Internal();
         temp.setPoint(getSeq().charAt(depth), this);
         return temp.insert(inSeq, depth);
+    }
+    
+    /**
+     * part of the recursive print function. this one of the base cases
+     * here, it will print out the sequence and any additional info based
+     * on the type that was passed
+     * 
+     * @param type
+     *          the type of print function
+     *          
+     * @return the string for this leaf
+     */
+    public String print(char type) {
+        String rString = "";
+        switch (type) {
+            case 'r':
+                rString = sequence;
+                break;
+            case 'l':
+                rString = sequence + " " + (sequence.length() - 1);
+                break;
+            case 's':
+                DecimalFormat dec = new DecimalFormat("#0.00");
+                int a = 0;
+                int c = 0;
+                int g = 0;
+                int t = 0;
+                for (int i = 0; i < sequence.length(); i++) {
+                    switch (sequence.charAt(i)) {
+                        case 'A':
+                            a++;
+                            break;
+                        case 'C':
+                            c++;
+                            break;
+                        case 'G':
+                            g++;
+                            break;
+                        case 'T':
+                            t++;
+                            break;
+                    }
+                }    
+                double aPer = 100 * a / (sequence.length() - 1);
+                double cPer = 100 * c / (sequence.length() - 1);
+                double gPer = 100 * g / (sequence.length() - 1);
+                double tPer = 100 * t / (sequence.length() - 1);
+               
+                rString = sequence + " A:" + dec.format(aPer) + " "
+                                + "C:" + dec.format(cPer) + " "
+                                + "G:" + dec.format(gPer) + " "
+                                + "T:" + dec.format(tPer) + " ";
+                break;           
+        }
+        return rString;
+        
     }
 
 }

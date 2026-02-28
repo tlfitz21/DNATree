@@ -15,12 +15,12 @@ public class DNAProjTest extends TestCase {
     public void setUp() {
         it = new DNADB();
     }
-//please work
+
 
 //    /**
 //     * Test output formatting
 //     */
-//    public void testSampleInput() {
+    public void testSampleInput() {
 //        assertFuzzyEquals(
 //            "Sequence |ACGT| inserted",
 //            it.insert("ACGT"));
@@ -30,72 +30,72 @@ public class DNAProjTest extends TestCase {
 //        assertFuzzyEquals(
 //            "Sequence |ACGT| removed",
 //            it.remove("ACGT"));
-//        assertFuzzyEquals(
-//            "Sequence |AAAA| inserted",
-//            it.insert("AAAA"));
-//        assertFuzzyEquals(
-//            "Sequence |AA| inserted",
-//            it.insert("AA"));
-//        assertFuzzyEquals(
-//            "Sequence |ACG| does not exist",
-//            it.remove("ACG"));
-//        assertFuzzyEquals(
-//            "tree dump:\r\n"
-//            + "I\r\n"
-//            + "  I\r\n"
-//            + "    I\r\n"
-//            + "      AAAA\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      AA\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E",
-//                it.print());
-//        assertFuzzyEquals(
-//            "tree dump with lengths:\r\n"
-//            + "I\r\n"
-//            + "  I\r\n"
-//            + "    I\r\n"
-//            + "      AAAA 4\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      AA 2\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E",
-//                it.printLengths());
-//        assertFuzzyEquals(
-//            "tree dump with stats:\r\n"
-//            + "I\r\n"
-//            + "  I\r\n"
-//            + "    I\r\n"
-//            + "      AAAA A:100.00 C:0.00 G:0.00 T:0.00\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      E\r\n"
-//            + "      AA A:100.00 C:0.00 G:0.00 T:0.00\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "    E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E\r\n"
-//            + "  E",
-//                it.printStats());
+        assertFuzzyEquals(
+            "Sequence |AAAA| inserted",
+            it.insert("AAAA"));
+        assertFuzzyEquals(
+            "Sequence |AA| inserted",
+            it.insert("AA"));
+        assertFuzzyEquals(
+            "Sequence |ACG| does not exist",
+            it.remove("ACG"));
+        assertFuzzyEquals(
+            "tree dump:\r\n"
+            + "I\r\n"
+            + "  I\r\n"
+            + "    I\r\n"
+            + "      AAAA\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      AA\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E",
+                it.print());
+        assertFuzzyEquals(
+            "tree dump with lengths:\r\n"
+            + "I\r\n"
+            + "  I\r\n"
+            + "    I\r\n"
+            + "      AAAA 4\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      AA 2\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E",
+                it.printLengths());
+        assertFuzzyEquals(
+            "tree dump with stats:\r\n"
+            + "I\r\n"
+            + "  I\r\n"
+            + "    I\r\n"
+            + "      AAAA A:100.00 C:0.00 G:0.00 T:0.00\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      E\r\n"
+            + "      AA A:100.00 C:0.00 G:0.00 T:0.00\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "    E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E",
+                it.printStats());
 //        assertFuzzyEquals(
 //            "AAAA\r\n"
 //            + "# of nodes visited: 4",
@@ -109,7 +109,7 @@ public class DNAProjTest extends TestCase {
 //            "No sequence found\r\n"
 //                + "# of nodes visited: 3",
 //                it.search("ACGT$"));
-//    }
+    }
 
 
     /**
