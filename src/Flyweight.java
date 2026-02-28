@@ -31,4 +31,12 @@ public class Flyweight implements Node {
     public String print(char type) {
         return "E";
     }
+    
+    public String search(String sequence, int currDepth) {
+        return "No sequence found\r\n" + "# of nodes visited: " + (currDepth + 1);
+    }
+    
+    public String searchHard(String sequence) {
+        return "";
+    }
 }

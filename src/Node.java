@@ -37,4 +37,26 @@ public interface Node {
      *          the string to be print
      */
     public String print(char type);
+
+    /**
+     * Searches for a single sequence
+     * @param sequence
+     *          the sequence to search for
+     * @param currDepth
+     *          how far down the tree we are, so we can keep original sequence and
+     *          just substring it to figure out which node to call next
+     * @return
+     *          result of search with number of nodes searched
+     */
+    public String search(String sequence, int currDepth);
+    
+    /**
+     * Recursively searches for all nodes that start with given sequence
+     * 
+     * @param sequence
+     *          the starting sequence to search for
+     * @return
+     *          string representation of nodes found
+     */
+    public String searchHard(String sequence);
 }

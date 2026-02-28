@@ -157,7 +157,12 @@ public class DNADB implements DNA {
         
         if (!checkLetters(sequence)) return "Bad Input Sequence " + sequence;
         
-        return "found";
+        String end = sequence.substring(sequence.length()-1, sequence.length());
+        if(end.equals("$")) {
+            return root.search(sequence, 1);
+        } else {
+            return root.searchHard(sequence);
+        }
     }
 
 
@@ -173,7 +178,7 @@ public class DNADB implements DNA {
         // if any character in the string is not valid, return false
         for (int i = 0; i < inStr.length(); i++) {
             if (inStr.charAt(i) != 'A' && inStr.charAt(i) != 'C' && inStr
-                .charAt(i) != 'G' && inStr.charAt(i) != 'T')
+                .charAt(i) != 'G' && inStr.charAt(i) != 'T' && inStr.charAt(i) != '$')
                 return false;
             else
                 continue;
