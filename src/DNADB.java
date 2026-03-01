@@ -26,7 +26,7 @@ public class DNADB implements DNA {
      */
     private Node root;
     
-    public int visited;
+    public static int visited;
 
     /**
      * Create a new DNADB object.
@@ -162,7 +162,7 @@ public class DNADB implements DNA {
         StringBuilder sb = new StringBuilder();
         if(sequence.charAt(sequence.length()-1)=='$') {
             // calls recursive search, returns a node always
-            Node ret = root.search(sequence, 0, this);
+            Node ret = root.search(sequence, 0);
             // if its a leaf node, it worked no problem
             if(ret instanceof Leaf) {
                 sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);

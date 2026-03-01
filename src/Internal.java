@@ -147,20 +147,20 @@ public class Internal implements Node {
         return sb.toString();
     }
 
-    public Node search(String sequence, int currDepth, DNADB obj) {
-        obj.visited = obj.visited + 1;
+    public Node search(String sequence, int currDepth) {
+        DNADB.visited = DNADB.visited + 1;
         if(currDepth<sequence.length()) {
             switch(sequence.charAt(currDepth)) {
                 case('A'):
-                    return pointA.search(sequence, currDepth+1, obj);
+                    return pointA.search(sequence, currDepth+1);
                 case('C'):
-                    return pointC.search(sequence, currDepth+1, obj);
+                    return pointC.search(sequence, currDepth+1);
                 case('G'):
-                    return pointG.search(sequence, currDepth+1, obj);
+                    return pointG.search(sequence, currDepth+1);
                 case('T'):
-                    return pointT.search(sequence, currDepth+1, obj);
+                    return pointT.search(sequence, currDepth+1);
                 case('$'):
-                    return pointD.search(sequence, currDepth+1, obj);
+                    return pointD.search(sequence, currDepth+1);
             }
         }
         return this;
