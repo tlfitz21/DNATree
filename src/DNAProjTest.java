@@ -115,8 +115,40 @@ public class DNAProjTest extends TestCase {
                 it.search("ACGT$"));
     }
     
+    /**
+     * Tests the simple version of test
+     */
     public void testSimpleSearch() {
-        
+        it.insert("A");
+        it.insert("C");
+        it.insert("AC");
+        it.insert("AGA");
+        it.insert("ACGT");
+        it.insert("TGCA");
+        assertFuzzyEquals(
+            "A\r\n"
+            + "# of nodes visited: 3",
+                it.search("A$"));
+        assertFuzzyEquals(
+            "C\r\n"
+            + "# of nodes visited: 2",
+                it.search("C$"));
+        assertFuzzyEquals(
+            "AC\r\n"
+            + "# of nodes visited: 4",
+                it.search("AC$"));
+        assertFuzzyEquals(
+            "AGA\r\n"
+            + "# of nodes visited: 3",
+                it.search("AGA$"));
+        assertFuzzyEquals(
+            "ACGT\r\n"
+            + "# of nodes visited: 4",
+                it.search("ACGT$"));
+        assertFuzzyEquals(
+            "TGCA\r\n"
+            + "# of nodes visited: 2",
+                it.search("TGCA$"));
     }
 
     public void testSearchAll() {
