@@ -137,6 +137,7 @@ public class Leaf implements Node {
     }
     
     public String searchAll() {
+        DNADB.visited++;
         return sequence + "\n";
     }
 

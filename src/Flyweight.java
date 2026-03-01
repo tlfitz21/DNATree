@@ -36,8 +36,9 @@ public class Flyweight implements Node {
         DNADB.visited = DNADB.visited + 1;
         return this;
     }
-    
+   
     public String searchAll() {
+        DNADB.visited++;
         return "";
     }
 }

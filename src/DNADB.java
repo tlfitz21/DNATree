@@ -171,7 +171,6 @@ public class DNADB implements DNA {
         // calls recursive search, returns a node always
         Node ret = root.search(sequence, 0);
         // if its a leaf node, it worked no problem
-
         if (ret instanceof Leaf) {
             if (((Leaf)ret).getSeq().equals(sequence)) {
                 sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
@@ -194,7 +193,7 @@ public class DNADB implements DNA {
         }
         // if its neither, then its an internal node, so we do to a harder
         // search
-        sb.append(ret.searchAll() + "# of nodes visited: " + visited);
+        sb.append(ret.searchAll() + "# of nodes visited: " + (visited - 1));
         visited = 0;
         return sb.toString();
     }

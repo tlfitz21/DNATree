@@ -168,7 +168,7 @@ public class Internal implements Node {
     
     public String searchAll() {
         StringBuilder sb = new StringBuilder();
-        DNADB.visited += 5;
+        DNADB.visited++;
         
         sb.append(pointA.searchAll());
         sb.append(pointC.searchAll());

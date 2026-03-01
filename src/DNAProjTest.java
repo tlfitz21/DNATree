@@ -119,7 +119,45 @@ public class DNAProjTest extends TestCase {
         
     }
 
-
+    public void testSearchAll() {
+        it.insert("A");
+        it.insert("C");
+        it.insert("ACGT");        
+        it.insert("AAAA");
+        it.insert("AAAG");
+        it.insert("TGCA");
+        it.insert("TGCC");
+        it.insert("TGGA");
+        it.insert("GGGGGGG");
+        it.insert("GGGGGA");
+        it.insert("CC");
+        it.insert("CCA");
+        it.insert("CA");
+        
+        assertFuzzyEquals(
+            "AAAA\r\n"
+            + "AAAG\r\n"
+            + "ACGT\r\n"
+            + "A\r\n"
+            + "# of nodes visited: 17",
+                it.search("A"));
+        assertFuzzyEquals(
+            "CCA\r\n"
+            + "CC\r\n"
+            + "# of nodes visited: 8",
+                it.search("CC"));
+        assertFuzzyEquals(
+            "TGCA\r\n"
+            + "TGCC\r\n"
+            + "# of nodes visited: 9",
+                it.search("TGC"));
+        assertFuzzyEquals(
+            "GGGGGA\r\n"
+            + "GGGGGGG\r\n"
+            + "# of nodes visited: 11",
+                it.search("GGGGG"));
+    }
+    
     /**
      * Example tests for bad input error formatting
      */
