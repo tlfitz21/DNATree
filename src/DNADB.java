@@ -158,26 +158,26 @@ public class DNADB implements DNA {
             return "No sequence found\n" + "# of nodes visited: 1";
         }
         
-        if (sequence.charAt(sequence.length()) == '$')
-            if (!checkLetters(sequence.substring(0, sequence.length() - 1)))
-                return "Bad Input Sequence " + sequence;
-
-            else if (!checkLetters(sequence))
-                return "Bad Input Sequence " + sequence;
+        if (!checkLetters(sequence)) return "Bad Input Sequence" + sequence;
 
         StringBuilder sb = new StringBuilder();
         // calls recursive search, returns a node always
         Node ret = root.search(sequence, 0);
         // if its a leaf node, it worked no problem
-        if (ret instanceof Leaf) {
-            sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
-            visited = 0;
-            return sb.toString();
-            // if its a flyweight, it didnt work
-        }
-        else if (ret instanceof Flyweight) {
-            sb.append("No sequence found\\r\\n" + "# of nodes visited: "
-                + visited);
+
+        if(ret instanceof Leaf) {
+            if(((Leaf)ret).getSeq().equals(sequence)) {
+                sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            } else {
+                sb.append("No sequence found\r\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            }
+        // if its a flyweight, it didnt work
+        } else if(ret instanceof Flyweight) {
+            sb.append("No sequence found\r\n" + "# of nodes visited: " + visited);
             visited = 0;
             return sb.toString();
         }
@@ -201,7 +201,7 @@ public class DNADB implements DNA {
         // if any character in the string is not valid, return false
         for (int i = 0; i < inStr.length(); i++) {
             if (inStr.charAt(i) != 'A' && inStr.charAt(i) != 'C' && inStr
-                .charAt(i) != 'G' && inStr.charAt(i) != 'T')
+                .charAt(i) != 'G' && inStr.charAt(i) != 'T' && inStr.charAt(i) != '$')
                 return false;
             else
                 continue;
