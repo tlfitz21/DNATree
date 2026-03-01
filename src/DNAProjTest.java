@@ -114,6 +114,10 @@ public class DNAProjTest extends TestCase {
                 + "# of nodes visited: 3",
                 it.search("ACGT$"));
     }
+    
+    public void testSimpleSearch() {
+        
+    }
 
 
     /**
