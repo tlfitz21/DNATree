@@ -20,12 +20,12 @@ public class DNADB implements DNA {
      * A flag for insert to mark when an input sequence matches an existing one
      */
     public static boolean isDuplicate;
-    
+
     /**
      * The root of the entire tree
      */
     private Node root;
-    
+
     public static int visited;
 
     /**
@@ -66,14 +66,15 @@ public class DNADB implements DNA {
 
         // call the recursive insert function of the root node
         root = root.insert(sequence, 0);
-        
-        //if it was a duplicate, revert isDuplicate and then return error message
-        //otherwise return success message
+
+        // if it was a duplicate, revert isDuplicate and then return error
+        // message
+        // otherwise return success message
         if (isDuplicate) {
             isDuplicate = false;
             return "Sequence " + sequence + " already exists";
         }
-        
+
         return "Sequence " + sequence + " inserted";
     }
 
@@ -87,7 +88,7 @@ public class DNADB implements DNA {
      * @return The outcomes message string
      */
     public String remove(String sequence) {
-        
+
         if (sequence == null) {
             return "Bad input: Sequence may not be null";
         }
@@ -99,7 +100,7 @@ public class DNADB implements DNA {
         if (!checkLetters(sequence)) {
             return "Bad Input Sequence " + sequence;
         }
-        
+
         return "Sequence " + sequence + " does not exist";
     }
 
@@ -111,7 +112,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String print() {
-        
+
         return "tree dump:\n" + root.print('r');
 
     }
@@ -124,7 +125,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String printLengths() {
-        return "tree dump with lengths:\n" +  root.print('l');
+        return "tree dump with lengths:\n" + root.print('l');
     }
 
 
@@ -135,7 +136,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String printStats() {
-        return "tree dump with stats:\n" +  root.print('s');
+        return "tree dump with stats:\n" + root.print('s');
     }
 
 
@@ -148,7 +149,7 @@ public class DNADB implements DNA {
      * @return the print string
      */
     public String search(String sequence) {
-        
+
         if (sequence == null) {
             return "Bad input: Sequence may not be null";
         }
@@ -157,23 +158,31 @@ public class DNADB implements DNA {
             return "No sequence found\n" + "# of nodes visited: 1";
         }
         
-        if (!checkLetters(sequence)) return "Bad Input Sequence " + sequence;
-        
+        if (sequence.charAt(sequence.length()) == '$')
+            if (!checkLetters(sequence.substring(0, sequence.length() - 1)))
+                return "Bad Input Sequence " + sequence;
+
+            else if (!checkLetters(sequence))
+                return "Bad Input Sequence " + sequence;
+
         StringBuilder sb = new StringBuilder();
         // calls recursive search, returns a node always
         Node ret = root.search(sequence, 0);
         // if its a leaf node, it worked no problem
-        if(ret instanceof Leaf) {
+        if (ret instanceof Leaf) {
             sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
             visited = 0;
             return sb.toString();
-        // if its a flyweight, it didnt work
-        } else if(ret instanceof Flyweight) {
-            sb.append("No sequence found\\r\\n" + "# of nodes visited: " + visited);
+            // if its a flyweight, it didnt work
+        }
+        else if (ret instanceof Flyweight) {
+            sb.append("No sequence found\\r\\n" + "# of nodes visited: "
+                + visited);
             visited = 0;
             return sb.toString();
         }
-        // if its neither, then its an internal node, so we do to a harder search
+        // if its neither, then its an internal node, so we do to a harder
+        // search
         sb.append(ret.searchAll() + "# of nodes visited: " + visited);
         visited = 0;
         return sb.toString();
@@ -192,7 +201,7 @@ public class DNADB implements DNA {
         // if any character in the string is not valid, return false
         for (int i = 0; i < inStr.length(); i++) {
             if (inStr.charAt(i) != 'A' && inStr.charAt(i) != 'C' && inStr
-                .charAt(i) != 'G' && inStr.charAt(i) != 'T' && inStr.charAt(i) != '$')
+                .charAt(i) != 'G' && inStr.charAt(i) != 'T')
                 return false;
             else
                 continue;
