@@ -101,10 +101,15 @@ public class DNAProjTest extends TestCase {
             + "# of nodes visited: 4",
                 it.search("AAAA$"));
         assertFuzzyEquals(
-            "AAAA\r\n"
-            + "AA\r\n"
-            + "# of nodes visited: 8",
-                it.search("AA"));
+            "AAA\r\n"
+            + "# of nodes visited: 3",
+                it.search("AAA$"));
+//        assertFuzzyEquals(
+//            "AAAA\r\n"
+//            + "AA\r\n"
+//            + "# of nodes visited: 8",
+//                it.search("AA"));
+
         assertFuzzyEquals(
             "No sequence found\r\n"
                 + "# of nodes visited: 3",

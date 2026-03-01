@@ -131,8 +131,9 @@ public class Leaf implements Node {
         
     }
     
-    public String search(String sequence, int currDepth) {
-        return sequence + "\r\n" + "# of nodes visited: " + currDepth;
+    public Node search(String sequence, int currDepth, DNADB obj) {
+        obj.visited = obj.visited + 1;
+        return this;
     }
     
     public String searchAll() {

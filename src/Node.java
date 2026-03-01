@@ -48,7 +48,7 @@ public interface Node {
      * @return
      *          result of search with number of nodes searched
      */
-    public String search(String sequence, int currDepth);
+    public Node search(String sequence, int currDepth, DNADB obj);
     
     /**
      * Recursively searches for all nodes that start with given sequence

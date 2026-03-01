@@ -25,6 +25,8 @@ public class DNADB implements DNA {
      * The root of the entire tree
      */
     private Node root;
+    
+    public int visited;
 
     /**
      * Create a new DNADB object.
@@ -33,7 +35,7 @@ public class DNADB implements DNA {
         fw = new Flyweight();
         isDuplicate = false;
         root = fw;
-        
+        visited = 0;
     }
 
 
@@ -157,11 +159,25 @@ public class DNADB implements DNA {
         
         if (!checkLetters(sequence)) return "Bad Input Sequence " + sequence;
         
-        String end = sequence.substring(sequence.length()-1, sequence.length());
-        if(end.equals("$")) {
-            return root.search(sequence, 1);
-        } else {
-            return root.searchHard(sequence);
+        StringBuilder sb = new StringBuilder();
+        if(sequence.charAt(sequence.length()-1)=='$') {
+            // calls recursive search, returns a node always
+            Node ret = root.search(sequence, 0, this);
+            // if its a leaf node, it worked no problem
+            if(ret instanceof Leaf) {
+                sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            // if its a flyweight, it didnt work
+            } else if(ret instanceof Flyweight) {
+                sb.append("No sequence found\\r\\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            }
+            // if its neither, then its an internal node, so we do to a harder search
+            sb.append(ret.searchAll() + "# of nodes visited: " + visited);
+            visited = 0;
+            return sb.toString();
         }
     }
 
