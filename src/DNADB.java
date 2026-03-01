@@ -164,12 +164,18 @@ public class DNADB implements DNA {
         Node ret = root.search(sequence, 0);
         // if its a leaf node, it worked no problem
         if(ret instanceof Leaf) {
-            sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
-            visited = 0;
-            return sb.toString();
+            if(((Leaf)ret).getSeq().equals(sequence)) {
+                sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            } else {
+                sb.append("No sequence found\r\n" + "# of nodes visited: " + visited);
+                visited = 0;
+                return sb.toString();
+            }
         // if its a flyweight, it didnt work
         } else if(ret instanceof Flyweight) {
-            sb.append("No sequence found\\r\\n" + "# of nodes visited: " + visited);
+            sb.append("No sequence found\r\n" + "# of nodes visited: " + visited);
             visited = 0;
             return sb.toString();
         }
