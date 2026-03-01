@@ -159,7 +159,7 @@ public class Internal implements Node {
                     return pointG.search(sequence, currDepth+1);
                 case('T'):
                     return pointT.search(sequence, currDepth+1);
-                case('$'):
+                default:
                     return pointD.search(sequence, currDepth+1);
             }
         }
