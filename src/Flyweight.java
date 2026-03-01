@@ -32,8 +32,9 @@ public class Flyweight implements Node {
         return "E";
     }
     
-    public String search(String sequence, int currDepth) {
-        return "No sequence found\r\n" + "# of nodes visited: " + (currDepth + 1);
+    public Node search(String sequence, int currDepth, DNADB obj) {
+        obj.visited = obj.visited + 1;
+        return this;
     }
     
     public String searchHard(String sequence) {

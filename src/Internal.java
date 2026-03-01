@@ -147,20 +147,23 @@ public class Internal implements Node {
         return sb.toString();
     }
 
-    public String search(String sequence, int currDepth) {
-        String curr = sequence.substring(currDepth,currDepth + 1);
-        if(curr.equals("A")) {
-            return pointA.search(sequence, currDepth+1);
-        } else if(curr.equals("C")) {
-            return pointC.search(sequence, currDepth+1);
-        } else if(curr.equals("G")) {
-            return pointD.search(sequence, currDepth+1);
-        } else if(curr.equals("T")) {
-            return pointT.search(sequence, currDepth+1);
-        } else if(curr.equals("$")) {
-            return pointD.search(sequence, currDepth+1);
+    public Node search(String sequence, int currDepth, DNADB obj) {
+        obj.visited = obj.visited + 1;
+        if(currDepth<sequence.length()) {
+            switch(sequence.charAt(currDepth)) {
+                case('A'):
+                    return pointA.search(sequence, currDepth+1, obj);
+                case('C'):
+                    return pointC.search(sequence, currDepth+1, obj);
+                case('G'):
+                    return pointG.search(sequence, currDepth+1, obj);
+                case('T'):
+                    return pointT.search(sequence, currDepth+1, obj);
+                case('$'):
+                    return pointD.search(sequence, currDepth+1, obj);
+            }
         }
-        return "";
+        return this;
     }
     
     public String searchHard(String sequence) {

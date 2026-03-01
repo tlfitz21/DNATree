@@ -100,6 +100,10 @@ public class DNAProjTest extends TestCase {
             "AAAA\r\n"
             + "# of nodes visited: 4",
                 it.search("AAAA$"));
+        assertFuzzyEquals(
+            "AAA\r\n"
+            + "# of nodes visited: 3",
+                it.search("AAA$"));
 //        assertFuzzyEquals(
 //            "AAAA\r\n"
 //            + "AA\r\n"
