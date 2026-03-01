@@ -58,5 +58,5 @@ public interface Node {
      * @return
      *          string representation of nodes found
      */
-    public String searchHard(String sequence);
+    public String searchAll();
 }

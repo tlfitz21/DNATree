@@ -163,20 +163,16 @@ public class Internal implements Node {
         return "";
     }
     
-    public String searchHard(String sequence) {
-        String curr = sequence.substring(0,1);
+    public String searchAll() {
         StringBuilder sb = new StringBuilder();
-        if(curr.equals("A")) {
-            sb.append(pointA.searchHard(sequence.substring(1,sequence.length())));
-        } else if(curr.equals("C")) {
-            sb.append(pointC.searchHard(sequence.substring(1,sequence.length())));
-        } else if(curr.equals("G")) {
-            sb.append(pointG.searchHard(sequence.substring(1,sequence.length())));
-        } else if(curr.equals("T")) {
-            sb.append(pointT.searchHard(sequence.substring(1,sequence.length())));
-        } else if(curr.equals("$")) {
-            sb.append(pointD.searchHard(sequence.substring(1,sequence.length())));
-        }
+        DNADB.visited += 5;
+        
+        sb.append(pointA.searchAll());
+        sb.append(pointC.searchAll());
+        sb.append(pointG.searchAll());
+        sb.append(pointT.searchAll());
+        sb.append(pointD.searchAll());
+        
         return sb.toString();
     }
 }

@@ -135,8 +135,8 @@ public class Leaf implements Node {
         return sequence + "\r\n" + "# of nodes visited: " + currDepth;
     }
     
-    public String searchHard(String sequence) {
-        return "found";
+    public String searchAll() {
+        return sequence + "\n";
     }
 
 }
