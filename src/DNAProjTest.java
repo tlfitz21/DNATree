@@ -188,7 +188,9 @@ public class DNAProjTest extends TestCase {
             + "GGGGGGG\r\n"
             + "# of nodes visited: 11",
                 it.search("GGGGG"));
+        System.out.println(it.search(""));
     }
+    
     
     /**
      * Example tests for bad input error formatting
