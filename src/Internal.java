@@ -196,33 +196,45 @@ public class Internal implements Node {
             }
         }
         boolean hasAtLeastOneNode = false;
-        if(pointA != null) {
+        if(pointA != DNADB.fw) {
             hasAtLeastOneNode = true;
         }
-        if(pointC != null) {
+        if(pointC != DNADB.fw) {
             if(hasAtLeastOneNode) {
                 return this;
             }
             hasAtLeastOneNode = true;
         }
-        if(pointG != null) {
+        if(pointG != DNADB.fw) {
             if(hasAtLeastOneNode) {
                 return this;
             }
             hasAtLeastOneNode = true;
         }
-        if(pointT != null) {
+        if(pointT != DNADB.fw) {
             if(hasAtLeastOneNode) {
                 return this;
             }
             hasAtLeastOneNode = true;
         }
-        if(pointD != null) {
+        if(pointD != DNADB.fw) {
             if(hasAtLeastOneNode) {
                 return this;
             }
         }
-        return this;
+        if(pointA != DNADB.fw) {
+            return pointA;
+        }
+        if(pointC != DNADB.fw) {
+            return pointC;
+        }
+        if(pointG != DNADB.fw) {
+            return pointG;
+        }
+        if(pointT != DNADB.fw) {
+            return pointT;
+        }
+        return pointD;
     }
 }
 

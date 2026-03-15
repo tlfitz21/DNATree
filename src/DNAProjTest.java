@@ -252,6 +252,30 @@ public class DNAProjTest extends TestCase {
             it.remove(""));
     }
     
+    public void testRemove() {
+        it.insert("A");
+        it.insert("C");
+        
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        
+        it.insert("A");
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        
+        it.insert("A");
+        it.insert("AA");
+        it.insert("C");
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals(
+            "tree dump:\r\n"
+            + "I\r\n"
+            + "	 AA\r\n"
+            + "  C\r\n"
+            + "  E\r\n"
+            + "  E\r\n"
+            + "  E\r\n",
+            it.print());
+    }
+    
     public void testBasicInput() {
 
         assertFuzzyEquals(

@@ -41,4 +41,8 @@ public class Flyweight implements Node {
         DNADB.visited++;
         return "";
     }
+    
+    public Node remove(String sequence, int currDepth) {
+        return this;
+    }
 }
