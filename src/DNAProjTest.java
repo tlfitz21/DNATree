@@ -309,6 +309,23 @@ public class DNAProjTest extends TestCase {
         
     }
     
+    public void testPrint() {
+        it.insert("CG");
+        it.insert("GC");
+        it.insert("TC");
+        
+        assertFuzzyEquals(
+            "tree dump with stats:\r\n"
+            + "I\r\n"
+            + "  E\r\n"
+            + "  CG A:0.00 C:50.00 G:50.00 T:0.00\r\n"
+            + "  GC A:0.00 C:50.00 G:50.00 T:0.00\r\n"
+            + "  TC A:0.00 C:50.00 G:0.00 T:50.00\r\n"
+            + "  E",
+            it.printStats());
+        
+    }
+    
     public void testBasicInput() {
 
         assertFuzzyEquals(
