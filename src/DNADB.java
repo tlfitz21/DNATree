@@ -100,21 +100,19 @@ public class DNADB implements DNA {
         if (!checkLetters(sequence)) {
             return "Bad Input Sequence " + sequence;
         }
-
         // Add a dollar sign so that it properly finds node
         sequence += "$";
+        if(search(sequence).contains("No sequence found")) {
+            return "Sequence |ACG| does not exist";
+        }
+
         // isDuplicate is whether or not we removed successfully
-        isDuplicate = false;
-        root.remove(sequence, 0);
+//        isDuplicate = false;
+        root = root.remove(sequence, 0);
         
         // isDuplicate is whether or not we successfully removed the node
-        if(isDuplicate) {
-            isDuplicate = false;
-            return "Sequence |"+sequence+"| removed\r\n";
-        } else {
-            isDuplicate = false;
-            return "Sequence |"+sequence+"| does not exist\r\n";
-        }
+//        isDuplicate = false;
+        return "Sequence |"+sequence+"| removed\r\n";
     }
 
 
