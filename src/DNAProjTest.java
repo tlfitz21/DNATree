@@ -279,7 +279,8 @@ public class DNAProjTest extends TestCase {
         it.insert("T");
         it.insert("A");
         assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
-        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        assertFuzzyEquals("Sequence |T| removed\r\n", 
+            it.remove("T"));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
         assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
@@ -301,7 +302,8 @@ public class DNAProjTest extends TestCase {
         it.insert("A");
         it.insert("AA");
         it.insert("AAA");
-        assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
+        assertFuzzyEquals("Sequence |AAA| removed\r\n", 
+            it.remove("AAA"));
         assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         

@@ -226,19 +226,22 @@ public class Internal implements Node {
         }
         
         // Collapse
-        if(pointA != DNADB.fw) {
+        if(pointA instanceof Leaf) {
             return pointA;
         }
-        if(pointC != DNADB.fw) {
+        if(pointC instanceof Leaf) {
             return pointC;
         }
-        if(pointG != DNADB.fw) {
+        if(pointG instanceof Leaf) {
             return pointG;
         }
-        if(pointT != DNADB.fw) {
+        if(pointT instanceof Leaf) {
             return pointT;
         }
-        return pointD;
+        if(pointD instanceof Leaf) {
+            return pointD;
+        }
+        return this;
     }
 }
 
