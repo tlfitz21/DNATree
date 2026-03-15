@@ -101,10 +101,13 @@ public class DNADB implements DNA {
             return "Bad Input Sequence " + sequence;
         }
 
+        sequence += "$";
+        root.remove(sequence, 0);
+        
         if(isDuplicate) {
-            return "we gottem boss";
+            return "Sequence |"+sequence+"| removed\r\n";
         } else {
-            return "rascal got 'oway boss";
+            return "Bad input sequence |"+sequence+"|\r\n";
         }
     }
 
