@@ -189,6 +189,23 @@ public class DNAProjTest extends TestCase {
             + "# of nodes visited: 11",
                 it.search("GGGGG"));
         System.out.println(it.search(""));
+        assertFuzzyEquals(
+            "AAAA\r\n"
+            + "AAAG\r\n"
+            + "ACGT\r\n"
+            + "A\r\n"
+            + "CA\r\n"
+            + "CCA\r\n"
+            + "CC\r\n"
+            + "C\r\n"
+            + "GGGGGA\r\n"
+            + "GGGGGGG\r\n"
+            + "TGCA\r\n"
+            + "TGCC\r\n"
+            + "TGGA\r\n"
+            + "# of nodes visited: 70",
+                it.search("")
+            );
     }
     
     

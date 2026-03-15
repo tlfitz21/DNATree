@@ -193,6 +193,7 @@ public class Internal implements Node {
                 pointT = pointT.remove(sequence, currDepth + 1);
             default:
                 pointD = pointD.remove(sequence, currDepth + 1);
+
         }
         
         // Check how many children we have, if we have more than one: collapse
