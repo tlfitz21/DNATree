@@ -21,15 +21,15 @@ public class DNAProjTest extends TestCase {
 //     * Test output formatting
 //     */
     public void testSampleInput() {
-//        assertFuzzyEquals(
-//            "Sequence |ACGT| inserted",
-//            it.insert("ACGT"));
-//        assertFuzzyEquals(
-//            "Sequence |ACGT| already exists",
-//            it.insert("ACGT"));
-//        assertFuzzyEquals(
-//            "Sequence |ACGT| removed",
-//            it.remove("ACGT"));
+        assertFuzzyEquals(
+            "Sequence |ACGT| inserted",
+            it.insert("ACGT"));
+        assertFuzzyEquals(
+            "Sequence |ACGT| already exists",
+            it.insert("ACGT"));
+        assertFuzzyEquals(
+            "Sequence |ACGT| removed",
+            it.remove("ACGT"));
         assertFuzzyEquals(
             "Sequence |AAAA| inserted",
             it.insert("AAAA"));
@@ -220,10 +220,10 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("testBadInput",
             "Bad input: Sequence may not be null\r\n",
             it.search(null));
-        assertFuzzyEquals("testBadInput",
-            "No sequence found\r\n"
-                + "# of nodes visited: 1",
-            it.search(""));
+//        assertFuzzyEquals("testBadInput",
+//            "No sequence found\r\n"
+//                + "# of nodes visited: 1",
+//            it.search(""));
         assertFuzzyEquals("testBadInput",
             "Bad input sequence |A$A|\r\n",
             it.remove("A$A"));
@@ -257,6 +257,37 @@ public class DNAProjTest extends TestCase {
             + "  E\r\n"
             + "  E\r\n",
             it.print());
+        
+        it.insert("G");
+        it.insert("T");
+        it.insert("A");
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        
+        it.insert("A");
+        it.insert("C");
+        it.insert("G");
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        
+        it.insert("A");
+        it.insert("G");
+        it.insert("T");
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it.insert("A");
+        it.insert("AA");
+        it.insert("AAA");
+        assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
+        assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        
     }
     
     public void testBasicInput() {

@@ -101,13 +101,19 @@ public class DNADB implements DNA {
             return "Bad Input Sequence " + sequence;
         }
 
+        // Add a dollar sign so that it properly finds node
         sequence += "$";
+        // isDuplicate is whether or not we removed successfully
+        isDuplicate = false;
         root.remove(sequence, 0);
         
+        // isDuplicate is whether or not we successfully removed the node
         if(isDuplicate) {
+            isDuplicate = false;
             return "Sequence |"+sequence+"| removed\r\n";
         } else {
-            return "Bad input sequence |"+sequence+"|\r\n";
+            isDuplicate = false;
+            return "Sequence |"+sequence+"| does not exist\r\n";
         }
     }
 

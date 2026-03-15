@@ -180,21 +180,22 @@ public class Internal implements Node {
     }
     
     public Node remove(String sequence, int currDepth) {
-        Node ret;
-        if(currDepth<sequence.length()) {
-            switch(sequence.charAt(currDepth)) {
-                case('A'):
-                    pointA = pointA.remove(sequence, currDepth + 1);
-                case('C'):
-                    pointC = pointC.remove(sequence, currDepth + 1);
-                case('G'):
-                    pointG = pointG.remove(sequence, currDepth + 1);
-                case('T'):
-                    pointT = pointT.remove(sequence, currDepth + 1);
-                default:
-                    pointD = pointD.remove(sequence, currDepth + 1);
-            }
+        // Mimics search logic to find node to be removed
+        // If we're at the last internal node, this will set the pointer to either the same leaf node it already was or a flyweight if it was removed
+        switch(sequence.charAt(currDepth)) {
+            case('A'):
+                pointA = pointA.remove(sequence, currDepth + 1);
+            case('C'):
+                pointC = pointC.remove(sequence, currDepth + 1);
+            case('G'):
+                pointG = pointG.remove(sequence, currDepth + 1);
+            case('T'):
+                pointT = pointT.remove(sequence, currDepth + 1);
+            default:
+                pointD = pointD.remove(sequence, currDepth + 1);
         }
+        
+        // Check how many children we have, if we have more than one: collapse
         boolean hasAtLeastOneNode = false;
         if(pointA != DNADB.fw) {
             hasAtLeastOneNode = true;
@@ -222,6 +223,8 @@ public class Internal implements Node {
                 return this;
             }
         }
+        
+        // Collapse
         if(pointA != DNADB.fw) {
             return pointA;
         }
