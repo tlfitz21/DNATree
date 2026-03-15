@@ -159,6 +159,9 @@ public class DNADB implements DNA {
         }
 
         if (sequence.compareTo("") == 0) {
+            if (root instanceof Flyweight)
+                return "No sequence found\r\n" + "# of nodes visited: 1"; 
+            
             String ret = root.searchAll() + "# of nodes visited: " + (visited - 1);
             visited = 0;
             return ret;
