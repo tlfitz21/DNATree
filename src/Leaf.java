@@ -141,4 +141,12 @@ public class Leaf implements Node {
         return sequence + "\n";
     }
 
+    public Node remove(String sequence, int currDepth) {
+        if(sequence.equals(this.sequence)) {
+            DNADB.isDuplicate = true;
+            return DNADB.fw;
+        } else {
+            return this;
+        }
+    }
 }

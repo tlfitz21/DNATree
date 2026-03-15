@@ -178,6 +178,52 @@ public class Internal implements Node {
         
         return sb.toString();
     }
+    
+    public Node remove(String sequence, int currDepth) {
+        Node ret;
+        if(currDepth<sequence.length()) {
+            switch(sequence.charAt(currDepth)) {
+                case('A'):
+                    pointA = pointA.remove(sequence, currDepth + 1);
+                case('C'):
+                    pointC = pointC.remove(sequence, currDepth + 1);
+                case('G'):
+                    pointG = pointG.remove(sequence, currDepth + 1);
+                case('T'):
+                    pointT = pointT.remove(sequence, currDepth + 1);
+                default:
+                    pointD = pointD.remove(sequence, currDepth + 1);
+            }
+        }
+        boolean hasAtLeastOneNode = false;
+        if(pointA != null) {
+            hasAtLeastOneNode = true;
+        }
+        if(pointC != null) {
+            if(hasAtLeastOneNode) {
+                return this;
+            }
+            hasAtLeastOneNode = true;
+        }
+        if(pointG != null) {
+            if(hasAtLeastOneNode) {
+                return this;
+            }
+            hasAtLeastOneNode = true;
+        }
+        if(pointT != null) {
+            if(hasAtLeastOneNode) {
+                return this;
+            }
+            hasAtLeastOneNode = true;
+        }
+        if(pointD != null) {
+            if(hasAtLeastOneNode) {
+                return this;
+            }
+        }
+        return this;
+    }
 }
 
 

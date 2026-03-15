@@ -101,7 +101,11 @@ public class DNADB implements DNA {
             return "Bad Input Sequence " + sequence;
         }
 
-        return "Sequence " + sequence + " does not exist";
+        if(isDuplicate) {
+            return "we gottem boss";
+        } else {
+            return "rascal got 'oway boss";
+        }
     }
 
 

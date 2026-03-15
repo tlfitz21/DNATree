@@ -59,4 +59,16 @@ public interface Node {
      *          string representation of nodes found
      */
     public String searchAll();
+    
+    /**
+     * Recursively searches for the node to remove, then returns that node for DNADB
+     * to handle actually removing
+     * @param sequence
+     *          the sequence to remove
+     * @param currDepth
+     *          keeping track of how far into the sequence we've searched
+     * @return
+     *          reference to the node to remove
+     */
+    public Node remove(String sequence, int currDepth);
 }
