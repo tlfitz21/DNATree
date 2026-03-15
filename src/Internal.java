@@ -180,7 +180,6 @@ public class Internal implements Node {
     }
     
     public Node remove(String sequence, int currDepth) {
-        Node ret;
         if(currDepth<sequence.length()) {
             switch(sequence.charAt(currDepth)) {
                 case('A'):
