@@ -106,7 +106,7 @@ public class DNADB implements DNA {
         // Add a dollar sign so that it properly finds node
         sequence += "$";
         if (search(sequence).contains("No sequence found")) {
-            return "Sequence |ACG| does not exist";
+            return "Sequence " + sequence + " does not exist";
         }
 
         // isDuplicate is whether or not we removed successfully
@@ -115,7 +115,7 @@ public class DNADB implements DNA {
 
         // isDuplicate is whether or not we successfully removed the node
 // isDuplicate = false;
-        return "Sequence |" + sequence + "| removed\r\n";
+        return "Sequence " + sequence + " removed\r\n";
     }
 
 

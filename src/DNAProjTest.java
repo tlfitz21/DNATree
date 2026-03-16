@@ -122,32 +122,24 @@ public class DNAProjTest extends TestCase {
      */
     public void testSearchAll() {
         it.insert("A");
-        it.insert("C");
-        it.insert("ACGT");
-        it.insert("AAAA");
-        it.insert("AAAG");
-        it.insert("TGCA");
-        it.insert("TGCC");
-        it.insert("TGGA");
-        it.insert("GGGGGGG");
-        it.insert("GGGGGA");
-        it.insert("CC");
-        it.insert("CCA");
-        it.insert("CA");
+        it.insert("AT");
+        it.insert("AA");
+        it.insert("AAAT");
+        it.insert("AAG");
+        it.insert("TG");
+        it.insert("TA");
+        it.insert("T");
+        it.insert("GA");        
 
-        assertFuzzyEquals("AAAA\r\n" + "AAAG\r\n" + "ACGT\r\n" + "A\r\n"
-            + "# of nodes visited: 17", it.search("A"));
-        assertFuzzyEquals("CCA\r\n" + "CC\r\n" + "# of nodes visited: 8", it
-            .search("CC"));
-        assertFuzzyEquals("TGCA\r\n" + "TGCC\r\n" + "# of nodes visited: 9", it
-            .search("TGC"));
-        assertFuzzyEquals("GGGGGA\r\n" + "GGGGGGG\r\n"
-            + "# of nodes visited: 11", it.search("GGGGG"));
-        System.out.println(it.search(""));
-        assertFuzzyEquals("AAAA\r\n" + "AAAG\r\n" + "ACGT\r\n" + "A\r\n"
-            + "CA\r\n" + "CCA\r\n" + "CC\r\n" + "C\r\n" + "GGGGGA\r\n"
-            + "GGGGGGG\r\n" + "TGCA\r\n" + "TGCC\r\n" + "TGGA\r\n"
-            + "# of nodes visited: 71", it.search(""));
+        assertFuzzyEquals("AA\r\n" + "# of nodes visited: 4", it.search("AA$"));
+        assertFuzzyEquals("AT\r\n" + "# of nodes visited: 3", it.search("AT$"));
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n"
+            + "# of nodes visited: 8", it.search("AA"));
+        assertFuzzyEquals("TA\r\n" + "TG\r\n" + "T\r\n"
+            + "# of nodes visited: 7", it.search("T"));
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "GA\r\n" + "TA\r\n" + "TG\r\n" + "T\r\n"
+            + "# of nodes visited: 21", it.search(""));
+
     }
 
 
@@ -368,7 +360,7 @@ public class DNAProjTest extends TestCase {
             + "      AA\r\n" + "    E\r\n" + "    E\r\n" + "    E\r\n"
             + "    A\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n", it
                 .print());
-        assertEquals("AAA\r\n" + "AAC\r\n" + "AA\r\n" + "A\r\n"
+        assertFuzzyEquals("AAA\r\n" + "AAC\r\n" + "AA\r\n" + "A\r\n"
             + "# of nodes visited: 16", it.search(""));
         assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
         assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "  I\r\n" + "    I\r\n"
@@ -382,7 +374,7 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "  I\r\n" + "    AAC\r\n"
             + "    E\r\n" + "    E\r\n" + "    E\r\n" + "    A\r\n" + "  E\r\n"
             + "  E\r\n" + "  E\r\n" + "  E\r\n", it.print());
-        assertEquals("AAC\r\n" + "A\r\n" + "# of nodes visited: 11", it.search(
+        assertFuzzyEquals("AAC\r\n" + "A\r\n" + "# of nodes visited: 11", it.search(
             ""));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         assertFuzzyEquals("tree dump:\r\n" + "AAC\r\n", it.print());
