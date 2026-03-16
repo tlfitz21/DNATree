@@ -191,7 +191,8 @@ public class DNADB implements DNA {
         Node ret = root.search(sequence, 0);
         // if its a leaf node, it worked no problem
         if (ret instanceof Leaf) {
-            if (((Leaf)ret).getSeq().equals(sequence)) {
+            if (sequence.charAt(sequence.length() - 1) != '$') sequence += "$";
+            if (((Leaf)ret).getSeq().equals(sequence)) {          //THIS LINE DOESN"T CHECK if the sequence has a dollar sign after it
                 sb.append(sequence + "\r\n" + "# of nodes visited: " + visited);
                 visited = 0;
                 return sb.toString();
