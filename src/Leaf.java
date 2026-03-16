@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+
 /**
  * This is a subclass of Node. It contains data for he DNA sequence, but no
  * pointers
@@ -69,20 +70,20 @@ public class Leaf implements Node {
             return this;
         }
 
-        
         Internal temp = new Internal();
         temp.setPoint(getSeq().charAt(depth), this);
         return temp.insert(inSeq, depth);
     }
-    
+
+
     /**
      * part of the recursive print function. this one of the base cases
      * here, it will print out the sequence and any additional info based
      * on the type that was passed
      * 
      * @param type
-     *          the type of print function
-     *          
+     *            the type of print function
+     * 
      * @return the string for this leaf
      */
     public String print(char type) {
@@ -115,37 +116,68 @@ public class Leaf implements Node {
                             t++;
                             break;
                     }
-                }    
+                }
                 double aPer = 100 * a / (sequence.length() - 1);
                 double cPer = 100 * c / (sequence.length() - 1);
                 double gPer = 100 * g / (sequence.length() - 1);
                 double tPer = 100 * t / (sequence.length() - 1);
-               
-                rString = sequence + " A:" + dec.format(aPer) + " "
-                                + "C:" + dec.format(cPer) + " "
-                                + "G:" + dec.format(gPer) + " "
-                                + "T:" + dec.format(tPer) + " ";
-                break;           
+
+                rString = sequence + " A:" + dec.format(aPer) + " " + "C:" + dec
+                    .format(cPer) + " " + "G:" + dec.format(gPer) + " " + "T:"
+                    + dec.format(tPer) + " ";
+                break;
         }
         return rString;
-        
+
     }
-    
+
+
+    /**
+     * The end of the simple version of search
+     * 
+     * @param sequence
+     *            the sequence to compare this to
+     * 
+     * @param currDepth
+     *            the current depth into the tree
+     * 
+     * @return returns itself since we found it
+     */
     public Node search(String sequence, int currDepth) {
         DNADB.visited = DNADB.visited + 1;
         return this;
     }
-    
+
+
+    /**
+     * The end of the recursive version of search
+     * 
+     * @return returns a string to append to the final returned string
+     */
     public String searchAll() {
         DNADB.visited++;
-        return sequence.substring(0, sequence.length() - 1)+ "\n";
+        return sequence.substring(0, sequence.length() - 1) + "\n";
     }
 
+
+    /**
+     * The end of the remove function
+     * 
+     * @param sequence
+     *            the sequence to compare with to see if this node needs to be
+     *            removed
+     * 
+     * @param currDepth
+     *            the current depth into this tree
+     * 
+     * @return returns a flyweight to remove this node or itself to not remove
+     *         it
+     */
     public Node remove(String sequence, int currDepth) {
-        if(sequence.equals(this.sequence)) {
-//            DNADB.isDuplicate = true;
+        if (sequence.equals(this.sequence)) {
             return DNADB.fw;
-        } else {
+        }
+        else {
             return this;
         }
     }

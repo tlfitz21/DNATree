@@ -20,28 +20,62 @@ public class Flyweight implements Node {
         return newLeaf;
 
     }
-    
+
+
     /**
      * part of the recursive insert algorithm. one of the base cases
      * 
      * @param type
-     *              the type of print function
+     *            the type of print function
      * @return "E" for empty
      */
     public String print(char type) {
         return "E";
     }
-    
+
+
+    /**
+     * Base case of the simple search function
+     * 
+     * @param sequence
+     *            the sequence to search for
+     * 
+     * @param currDepth
+     *            the current depth in the tree to keep track of which letter
+     *            we're on
+     * 
+     * @return returns the node found
+     */
     public Node search(String sequence, int currDepth) {
         DNADB.visited = DNADB.visited + 1;
         return this;
     }
-   
+
+
+    /**
+     * Base case for the complex search function
+     * 
+     * @param empty
+     *            string since this node isn't real
+     */
     public String searchAll() {
         DNADB.visited++;
         return "";
     }
-    
+
+
+    /**
+     * Base case for remove function
+     * 
+     * @param sequence
+     *            the sequence to remove
+     * 
+     * @param currDepth
+     *            the current depth in the tree to keep track of which letter
+     *            we're on
+     * 
+     * @return returns the node removed
+     */
     public Node remove(String sequence, int currDepth) {
         return this;
     }
