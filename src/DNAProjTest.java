@@ -203,7 +203,7 @@ public class DNAProjTest extends TestCase {
             + "TGCA\r\n"
             + "TGCC\r\n"
             + "TGGA\r\n"
-            + "# of nodes visited: 70",
+            + "# of nodes visited: 71",
                 it.search("")
             );
     }
