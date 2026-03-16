@@ -160,7 +160,7 @@ public class Internal implements Node {
                 case('T'):
                     return pointT.search(sequence, currDepth+1);
                 default:
-                    return pointD.search(sequence, currDepth+1);
+                    return pointD.search(sequence, 0);
             }
         }
         return this;
@@ -181,48 +181,26 @@ public class Internal implements Node {
     
     public Node remove(String sequence, int currDepth) {
         // Mimics search logic to find node to be removed
+        char currChar = sequence.charAt(currDepth);
+        currDepth++;
         // If we're at the last internal node, this will set the pointer to either the same leaf node it already was or a flyweight if it was removed
-        switch(sequence.charAt(currDepth)) {
+        switch(currChar) {
             case('A'):
-                pointA = pointA.remove(sequence, currDepth + 1);
+                pointA = pointA.remove(sequence, currDepth);
             case('C'):
-                pointC = pointC.remove(sequence, currDepth + 1);
+                pointC = pointC.remove(sequence, currDepth);
             case('G'):
-                pointG = pointG.remove(sequence, currDepth + 1);
+                pointG = pointG.remove(sequence, currDepth);
             case('T'):
-                pointT = pointT.remove(sequence, currDepth + 1);
+                pointT = pointT.remove(sequence, currDepth);
             default:
-                pointD = pointD.remove(sequence, currDepth + 1);
+                pointD = pointD.remove(sequence, 0);
 
         }
         
-        // Check how many children we have, if we have more than one: collapse
-        boolean hasAtLeastOneNode = false;
-        if(pointA != DNADB.fw) {
-            hasAtLeastOneNode = true;
-        }
-        if(pointC != DNADB.fw) {
-            if(hasAtLeastOneNode) {
-                return this;
-            }
-            hasAtLeastOneNode = true;
-        }
-        if(pointG != DNADB.fw) {
-            if(hasAtLeastOneNode) {
-                return this;
-            }
-            hasAtLeastOneNode = true;
-        }
-        if(pointT != DNADB.fw) {
-            if(hasAtLeastOneNode) {
-                return this;
-            }
-            hasAtLeastOneNode = true;
-        }
-        if(pointD != DNADB.fw) {
-            if(hasAtLeastOneNode) {
-                return this;
-            }
+        // Check how many children we have, if we have one leaf: collapse        
+        if(!hasOneLeafOnly()) {
+            return this;
         }
         
         // Collapse
@@ -238,10 +216,43 @@ public class Internal implements Node {
         if(pointT instanceof Leaf) {
             return pointT;
         }
-        if(pointD instanceof Leaf) {
-            return pointD;
+        return pointD;
+    }
+    
+    private boolean hasOneLeafOnly() {
+        int leafs = 0;
+        int ints = 0;
+        if(pointA instanceof Leaf) {
+            leafs++;
         }
-        return this;
+        if(pointA instanceof Internal) {
+            ints++;
+        }
+        if(pointC instanceof Leaf) {
+            leafs++;
+        }
+        if(pointC instanceof Internal) {
+            ints++;
+        }
+        if(pointG instanceof Leaf) {
+            leafs++;
+        }
+        if(pointG instanceof Internal) {
+            ints++;
+        }
+        if(pointT instanceof Leaf) {
+            leafs++;
+        }
+        if(pointT instanceof Internal) {
+            ints++;
+        }
+        if(pointD instanceof Leaf) {
+            leafs++;
+        }
+        if(ints > 0) {
+            return false;
+        }
+        return leafs == 1;
     }
 }
 
