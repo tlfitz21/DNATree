@@ -119,14 +119,17 @@ public class DNAProjTest extends TestCase {
      * Tests the simple version of test
      */
     public void testSimpleSearch() {
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("$"));
         it.insert("A");
         assertFuzzyEquals("A\r\n"+ "# of nodes visited: 1", it.search("A$"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("$"));
         it.insert("C");
         assertFuzzyEquals("C\r\n"+ "# of nodes visited: 2", it.search("C$"));
         it.insert("G");
         assertFuzzyEquals("G\r\n"+ "# of nodes visited: 2", it.search("G$"));
         it.insert("T");
         assertFuzzyEquals("T\r\n"+ "# of nodes visited: 2", it.search("T$"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 2", it.search("$"));
         
         it = new DNADB();
         it.insert("A");
