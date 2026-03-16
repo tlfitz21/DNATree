@@ -68,11 +68,6 @@ public class DNAProjTest extends TestCase {
         System.out.println(" ");
         
         it.insert("A");
-        
-        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A"));
-        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
-        
-     
         it.insert("AT");
         it.insert("AA");
         it.insert("AAAT");
@@ -213,6 +208,13 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("$"));
         assertFuzzyEquals("T\r\n" + "# of nodes visited: 1", it.search("T"));
         assertFuzzyEquals("T\r\n" + "# of nodes visited: 1", it.search("T$"));
+        
+        it = new DNADB();
+        it.insert("ACCCCC");
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("A"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A$"));
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("ACCCCC$"));
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("ACCCCC"));
     }
     /**
      * Tests the simple version of test
