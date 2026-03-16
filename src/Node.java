@@ -20,7 +20,8 @@ public interface Node {
      *         -the internal method returns itself
      */
     public Node insert(String sequence, int depth);
-    
+
+
     /**
      * 
      * Recursive print function. calls itself recursively to print the contents
@@ -29,46 +30,53 @@ public interface Node {
      * to do
      * 
      * @param type
-     *          the type of print method we want to use.
-     *          -r: regular print
-     *          -l: lengths print
-     *          -s: stats print
+     *            the type of print method we want to use.
+     *            -r: regular print
+     *            -l: lengths print
+     *            -s: stats print
      * @return
-     *          the string to be print
+     *         the string to be print
      */
     public String print(char type);
 
+
     /**
      * Searches for a single sequence
+     * 
      * @param sequence
-     *          the sequence to search for
+     *            the sequence to search for
      * @param currDepth
-     *          how far down the tree we are, so we can keep original sequence and
-     *          just substring it to figure out which node to call next
+     *            how far down the tree we are, so we can keep original sequence
+     *            and
+     *            just substring it to figure out which node to call next
      * @return
-     *          result of search with number of nodes searched
+     *         result of search with number of nodes searched
      */
     public Node search(String sequence, int currDepth);
-    
+
+
     /**
      * Recursively searches for all nodes that start with given sequence
      * 
      * @param sequence
-     *          the starting sequence to search for
+     *            the starting sequence to search for
      * @return
-     *          string representation of nodes found
+     *         string representation of nodes found
      */
     public String searchAll();
-    
+
+
     /**
-     * Recursively searches for the node to remove, then returns that node for DNADB
+     * Recursively searches for the node to remove, then returns that node for
+     * DNADB
      * to handle actually removing
+     * 
      * @param sequence
-     *          the sequence to remove
+     *            the sequence to remove
      * @param currDepth
-     *          keeping track of how far into the sequence we've searched
+     *            keeping track of how far into the sequence we've searched
      * @return
-     *          reference to the node to remove
+     *         reference to the node to remove
      */
     public Node remove(String sequence, int currDepth);
 }

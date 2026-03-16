@@ -26,6 +26,9 @@ public class DNADB implements DNA {
      */
     private Node root;
 
+    /**
+     * Keeps track of how many nodes have been visited in functions like search
+     */
     public static int visited;
 
     /**
@@ -102,17 +105,17 @@ public class DNADB implements DNA {
         }
         // Add a dollar sign so that it properly finds node
         sequence += "$";
-        if(search(sequence).contains("No sequence found")) {
+        if (search(sequence).contains("No sequence found")) {
             return "Sequence |ACG| does not exist";
         }
 
         // isDuplicate is whether or not we removed successfully
-//        isDuplicate = false;
+// isDuplicate = false;
         root = root.remove(sequence, 0);
-        
+
         // isDuplicate is whether or not we successfully removed the node
-//        isDuplicate = false;
-        return "Sequence |"+sequence+"| removed\r\n";
+// isDuplicate = false;
+        return "Sequence |" + sequence + "| removed\r\n";
     }
 
 
@@ -167,8 +170,8 @@ public class DNADB implements DNA {
 
         if (sequence.compareTo("") == 0) {
             if (root instanceof Flyweight)
-                return "No sequence found\r\n" + "# of nodes visited: 1"; 
-            
+                return "No sequence found\r\n" + "# of nodes visited: 1";
+
             String ret = root.searchAll() + "# of nodes visited: " + (visited);
             visited = 0;
             return ret;
@@ -182,7 +185,7 @@ public class DNADB implements DNA {
         else if (!checkLetters(sequence)) {
             return "Bad Input Sequence " + sequence;
         }
-        
+
         StringBuilder sb = new StringBuilder();
         // calls recursive search, returns a node always
         Node ret = root.search(sequence, 0);
