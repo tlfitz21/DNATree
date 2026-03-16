@@ -67,12 +67,12 @@ public class DNAProjTest extends TestCase {
         System.out.println(it.search(""));
         System.out.println(" ");
         
-        it.insert("ACCCCC");
+        it.insert("A");
         
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A"));
-        //assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
+        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
         
-        
+     
         it.insert("AT");
         it.insert("AA");
         it.insert("AAAT");
