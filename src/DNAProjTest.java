@@ -120,6 +120,16 @@ public class DNAProjTest extends TestCase {
      */
     public void testSimpleSearch() {
         it.insert("A");
+        assertFuzzyEquals("A\r\n"+ "# of nodes visited: 1", it.search("A$"));
+        it.insert("C");
+        assertFuzzyEquals("C\r\n"+ "# of nodes visited: 2", it.search("C$"));
+        it.insert("G");
+        assertFuzzyEquals("G\r\n"+ "# of nodes visited: 2", it.search("G$"));
+        it.insert("T");
+        assertFuzzyEquals("T\r\n"+ "# of nodes visited: 2", it.search("T$"));
+        
+        it = new DNADB();
+        it.insert("A");
         it.insert("C");
         it.insert("AC");
         it.insert("AGA");
@@ -149,6 +159,31 @@ public class DNAProjTest extends TestCase {
             "TGCA\r\n"
             + "# of nodes visited: 2",
                 it.search("TGCA$"));
+        
+        it = new DNADB();
+        it.insert("A");
+        it.insert("AA");
+        assertFuzzyEquals("A\r\n"+ "# of nodes visited: 3", it.search("A$"));
+        assertFuzzyEquals("AA\r\n"+ "# of nodes visited: 3", it.search("AA$"));
+        assertFuzzyEquals("AA\r\nA\r\n"+ "# of nodes visited: 7", it.search("A"));
+        it.insert("AAA");
+        assertFuzzyEquals("AAA\r\nAA\r\nA\r\n"+ "# of nodes visited: 12", it.search("A"));
+        
+        it = new DNADB();
+        it.insert("T");
+        assertFuzzyEquals("T\r\n"+ "# of nodes visited: 1", it.search("T$"));
+        it.insert("TTT");
+        assertFuzzyEquals("TTT\r\n"+ "# of nodes visited: 3", it.search("TTT$"));
+        it.insert("TTG");
+        assertFuzzyEquals("TTG\r\n"+ "# of nodes visited: 4", it.search("TTG$"));
+        it.insert("TTA");
+        assertFuzzyEquals("TTA\r\n"+ "# of nodes visited: 4", it.search("TTA$"));
+        it.insert("TTC");
+        assertFuzzyEquals("TTC\r\n"+ "# of nodes visited: 4", it.search("TTC$"));
+        it.insert("TT");
+        assertFuzzyEquals("TT\r\n"+ "# of nodes visited: 4", it.search("TT$"));
+        assertFuzzyEquals("T\r\n"+ "# of nodes visited: 3", it.search("T$"));
+        assertFuzzyEquals("TTT\r\n"+ "# of nodes visited: 4", it.search("TTT$"));
     }
 
     public void testSearchAll() {
@@ -237,10 +272,10 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("testBadInput",
             "Bad input: Sequence may not be null\r\n",
             it.search(null));
-//        assertFuzzyEquals("testBadInput",
-//            "No sequence found\r\n"
-//                + "# of nodes visited: 1",
-//            it.search(""));
+        assertFuzzyEquals("testBadInput",
+            "No sequence found\r\n"
+                + "# of nodes visited: 1",
+            it.search(""));
         assertFuzzyEquals("testBadInput",
             "Bad input sequence |A$A|\r\n",
             it.remove("A$A"));
@@ -250,21 +285,22 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("testBadInput",
             "Bad input: Sequence may not be empty",
             it.remove(""));
+        assertFuzzyEquals("testBadInput",
+            "Bad input sequence |A$A$|\r\n",
+            it.search("A$A$"));
     }
     
     public void testRemove() {
         it.insert("A");
         it.insert("C");
-        
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
-        
-        it.insert("A");
         assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
         
         it.insert("A");
         it.insert("AA");
         it.insert("C");
-        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |A| removed\r\n", 
+            it.remove("A"));
         assertFuzzyEquals(
             "tree dump:\r\n"
             + "I\r\n"
@@ -307,6 +343,177 @@ public class DNAProjTest extends TestCase {
         assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         
+        it = new DNADB();
+        it.insert("A");
+        it.insert("C");
+        it.insert("G");
+        it.insert("T");
+        it.insert("AA");
+        it.insert("AC");
+        it.insert("AG");
+        it.insert("AT");
+        it.insert("CA");
+        it.insert("CC");
+        it.insert("CG");
+        it.insert("CT");
+        it.insert("GA");
+        it.insert("GC");
+        it.insert("GG");
+        it.insert("GT");
+        it.insert("TA");
+        it.insert("TC");
+        it.insert("TG");
+        it.insert("TT");
+        assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
+        it.insert("AA");
+        assertFuzzyEquals("Sequence |AC| removed\r\n", it.remove("AC"));
+        it.insert("AC");
+        assertFuzzyEquals("Sequence |AG| removed\r\n", it.remove("AG"));
+        it.insert("AG");
+        assertFuzzyEquals("Sequence |AT| removed\r\n", it.remove("AT"));
+        it.insert("AT");
+        
+        assertFuzzyEquals("Sequence |CA| removed\r\n", it.remove("CA"));
+        it.insert("CA");
+        assertFuzzyEquals("Sequence |CC| removed\r\n", it.remove("CC"));
+        it.insert("CC");
+        assertFuzzyEquals("Sequence |CG| removed\r\n", it.remove("CG"));
+        it.insert("CG");
+        assertFuzzyEquals("Sequence |CT| removed\r\n", it.remove("CT"));
+        it.insert("CT");
+        
+        assertFuzzyEquals("Sequence |GA| removed\r\n", it.remove("GA"));
+        it.insert("GA");
+        assertFuzzyEquals("Sequence |GC| removed\r\n", it.remove("GC"));
+        it.insert("GC");
+        assertFuzzyEquals("Sequence |GG| removed\r\n", it.remove("GG"));
+        it.insert("GG");
+        assertFuzzyEquals("Sequence |GT| removed\r\n", it.remove("GT"));
+        it.insert("GT");
+        
+        assertFuzzyEquals("Sequence |TA| removed\r\n", it.remove("TA"));
+        it.insert("TA");
+        assertFuzzyEquals("Sequence |TC| removed\r\n", it.remove("TC"));
+        it.insert("TC");
+        assertFuzzyEquals("Sequence |TG| removed\r\n", it.remove("TG"));
+        it.insert("TG");
+        assertFuzzyEquals("Sequence |TT| removed\r\n", it.remove("TT"));
+        it.insert("TT");
+        
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        it.insert("A");
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        it.insert("C");
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        it.insert("G");
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        it.insert("T");
+        
+        it = new DNADB();
+        it.insert("A");
+        it.insert("C");
+        it.insert("G");
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        
+        it = new DNADB();
+        it.insert("A");
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        it.insert("C");
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        it.insert("G");
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        it.insert("T");
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it = new DNADB();
+        it.insert("T");
+        it.insert("TT");
+        it.insert("TA");
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it = new DNADB();
+        it.insert("T");
+        it.insert("TT");
+        it.insert("TC");
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it = new DNADB();
+        it.insert("T");
+        it.insert("TT");
+        it.insert("TG");
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it = new DNADB();
+        it.insert("A");
+        it.insert("AA");
+        it.insert("AAA");
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
+        assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
+        
+        it.insert("C");
+        it.insert("CC");
+        it.insert("CCC");
+        assertFuzzyEquals("Sequence |CC| removed\r\n", it.remove("CC"));
+        assertFuzzyEquals("Sequence |CCC| removed\r\n", it.remove("CCC"));
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        
+        it.insert("G");
+        it.insert("GG");
+        it.insert("GGG");
+        assertFuzzyEquals("Sequence |GG| removed\r\n", it.remove("GG"));
+        assertFuzzyEquals("Sequence |GGG| removed\r\n", it.remove("GGG"));
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        
+        it.insert("T");
+        it.insert("TT");
+        it.insert("TTT");
+        assertFuzzyEquals("Sequence |TT| removed\r\n", it.remove("TT"));
+        assertFuzzyEquals("Sequence |TTT| removed\r\n", it.remove("TTT"));
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        
+        it.insert("A");
+        it.insert("AA");
+        it.insert("AAA");
+        it.insert("AAC");
+        assertFuzzyEquals("Sequence |AA| removed\r\n", it.remove("AA"));
+        assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
+        assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
+        assertFuzzyEquals("Sequence |AAC| removed\r\n", it.remove("AAC"));
+        
+        it.insert("C");
+        it.insert("CC");
+        it.insert("CCC");
+        it.insert("CCA");
+        assertFuzzyEquals("Sequence |CC| removed\r\n", it.remove("CC"));
+        assertFuzzyEquals("Sequence |CCC| removed\r\n", it.remove("CCC"));
+        assertFuzzyEquals("Sequence |C| removed\r\n", it.remove("C"));
+        assertFuzzyEquals("Sequence |CCA| removed\r\n", it.remove("CCA"));
+        
+        it.insert("G");
+        it.insert("GG");
+        it.insert("GGG");
+        it.insert("GGA");
+        assertFuzzyEquals("Sequence |GG| removed\r\n", it.remove("GG"));
+        assertFuzzyEquals("Sequence |GGG| removed\r\n", it.remove("GGG"));
+        assertFuzzyEquals("Sequence |G| removed\r\n", it.remove("G"));
+        assertFuzzyEquals("Sequence |GGA| removed\r\n", it.remove("GGA"));
+        
+        it.insert("T");
+        it.insert("TT");
+        it.insert("TTT");
+        it.insert("TTA");
+        assertFuzzyEquals("Sequence |TT| removed\r\n", it.remove("TT"));
+        assertFuzzyEquals("Sequence |TTT| removed\r\n", it.remove("TTT"));
+        assertFuzzyEquals("Sequence |T| removed\r\n", it.remove("T"));
+        assertFuzzyEquals("Sequence |TTA| removed\r\n", it.remove("TTA"));
+        
+        it = new DNADB();
+        it.insert("C");
+        it.insert("AA");
+        it.insert("AG");
+        assertFuzzyEquals("Sequence |AG| removed\r\n", 
+            it.remove("AG"));
     }
     
     public void testPrint() {
