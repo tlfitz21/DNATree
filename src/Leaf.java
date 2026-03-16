@@ -138,7 +138,7 @@ public class Leaf implements Node {
     
     public String searchAll() {
         DNADB.visited++;
-        return sequence + "\n";
+        return sequence.substring(0, sequence.length() - 1)+ "\n";
     }
 
     public Node remove(String sequence, int currDepth) {
