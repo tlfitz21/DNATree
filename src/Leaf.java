@@ -119,8 +119,8 @@ public class Leaf implements Node {
                 double gPer = 100.00 * g / (double)(sequence.length() - 1);
                 double tPer = 100.00 * t / (double)(sequence.length() - 1);
 
-                rString = sequence + " A:" + aPer + " " + "C:" + cPer + " " + "G:" + gPer + " " + "T:"
-                    + tPer + " ";
+                rString = String.format("%s A:%.2f C:%.2f G:%.2f T:%.2f",
+                    sequence, aPer, cPer, gPer, tPer);
                 break;
         }
         return rString;
@@ -139,7 +139,7 @@ public class Leaf implements Node {
      * 
      * @return returns itself since we found it
      */
-    public Node search(String sequence, int currDepth) {
+    public Node search(String seq, int currDepth) {
         DNADB.visited = DNADB.visited + 1;
         return this;
     }
@@ -169,8 +169,8 @@ public class Leaf implements Node {
      * @return returns a flyweight to remove this node or itself to not remove
      *         it
      */
-    public Node remove(String sequence, int currDepth) {
-        if (sequence.equals(this.sequence)) {
+    public Node remove(String seq, int currDepth) {
+        if (seq.equals(this.sequence)) {
             return DNADB.fw;
         }
         else {

@@ -36,6 +36,7 @@ public class DNAProjTest extends TestCase {
             + "      E\r\n" + "      AA 2\r\n" + "    E\r\n" + "    E\r\n"
             + "    E\r\n" + "    E\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n"
             + "  E", it.printLengths());
+        System.out.println(it.printStats());
         assertFuzzyEquals("tree dump with stats:\r\n" + "I\r\n" + "  I\r\n"
             + "    I\r\n" + "      AAAA A:100.00 C:0.00 G:0.00 T:0.00\r\n"
             + "      E\r\n" + "      E\r\n" + "      E\r\n"
@@ -52,21 +53,24 @@ public class DNAProjTest extends TestCase {
             .search("ACGT$"));
     }
 
+
     /**
      * 
      * a new search test
      * 
      */
-    public void testNewSearch(){
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A$"));
+    public void testNewSearch() {
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("A$"));
         System.out.println(it.search("A$"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search(""));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search(""));
         System.out.println(it.search(""));
         System.out.println(" ");
-        
+
         it.insert("A");
         it.insert("AT");
         it.insert("AA");
@@ -76,65 +80,74 @@ public class DNAProjTest extends TestCase {
         it.insert("TA");
         it.insert("T");
         it.insert("GA");
-        
+
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 3", it.search("A$"));
         System.out.println(it.search("A$"));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("TA\r\n" + "# of nodes visited: 3", it.search("TA$"));
         System.out.println(it.search("TA$"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAG\r\n" + "# of nodes visited: 4", it.search("AAG$"));
+
+        assertFuzzyEquals("AAG\r\n" + "# of nodes visited: 4", it.search(
+            "AAG$"));
         System.out.println(it.search("AAG$"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "# of nodes visited: 12", it.search("A"));
+
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n"
+            + "# of nodes visited: 12", it.search("A"));
         System.out.println(it.search("A"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "# of nodes visited: 8", it.search("AA"));
+
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n"
+            + "# of nodes visited: 8", it.search("AA"));
         System.out.println(it.search("AA"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "GA\r\n" 
-            + "TA\r\n" + "TG\r\n" + "T\r\n" + "# of nodes visited: 21", it.search(""));
+
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n"
+            + "GA\r\n" + "TA\r\n" + "TG\r\n" + "T\r\n"
+            + "# of nodes visited: 21", it.search(""));
         System.out.println(it.search(""));
         System.out.println(" ");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 2", it.search("$"));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 2", it
+            .search("$"));
         System.out.println(it.search("$"));
         System.out.println(" ");
-        
+
         System.out.println(it.print());
-        
+
         System.out.println("NEW TESTING");
         System.out.println(" ");
-        
+
         it.remove("AAG");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 4", it.search("AAG$"));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 4", it
+            .search("AAG$"));
         System.out.println(it.search("AAG$"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "# of nodes visited: 12", it.search("A"));
+
+        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n"
+            + "# of nodes visited: 12", it.search("A"));
         System.out.println(it.search("A"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "# of nodes visited: 8", it.search("AA"));
+
+        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "# of nodes visited: 8", it
+            .search("AA"));
         System.out.println(it.search("AA"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "GA\r\n" 
-            + "TA\r\n" + "TG\r\n" + "T\r\n" + "# of nodes visited: 21", it.search(""));
+
+        assertFuzzyEquals("AAAT\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "GA\r\n"
+            + "TA\r\n" + "TG\r\n" + "T\r\n" + "# of nodes visited: 21", it
+                .search(""));
         System.out.println(it.search(""));
         System.out.println(" ");
-        
+
         System.out.println(it.print());
-        
+
         System.out.println("NEW TESTING");
         System.out.println(" ");
-        
+
         it.remove("A");
         it.remove("AT");
         it.remove("AA");
@@ -143,84 +156,96 @@ public class DNAProjTest extends TestCase {
         it.remove("TA");
         it.remove("T");
         it.remove("GA");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search(""));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search(""));
         System.out.println(it.search(""));
         System.out.println(" ");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A$"));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("A$"));
         System.out.println(it.search("A$"));
         System.out.println(" ");
-        
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A"));
+
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("A"));
         System.out.println(it.search("A"));
         System.out.println(" ");
-        
+
         System.out.println(it.print());
         System.out.println(" ");
-        
+
         System.out.println("NEW TESTING");
         System.out.println(" ");
-        
+
         assertFuzzyEquals("Bad Input Sequence  ", it.search(" "));
         System.out.println(it.search(" "));
         System.out.println(" ");
-        
-        assertFuzzyEquals("Bad input: Sequence may not be null", it.search(null));
+
+        assertFuzzyEquals("Bad input: Sequence may not be null", it.search(
+            null));
         System.out.println(it.search(null));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("Bad Input Sequence  XYZ", it.search("XYZ"));
         System.out.println(it.search("XYZ"));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("Bad Input Sequence  A$A", it.search("A$A"));
         System.out.println(it.search("A$A"));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("Bad Input Sequence  C$$", it.search("C$$"));
         System.out.println(it.search("C$$"));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("Bad Input Sequence  C A", it.search("C A"));
         System.out.println(it.search("C A"));
         System.out.println(" ");
-        
+
         System.out.println("NEW TESTING");
         System.out.println(" ");
-        
+
         it.insert("A");
-        
+
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A"));
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
-        
+
         it.insert("T");
-        
+
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 2", it.search("A$"));
         System.out.println(it.search("A$"));
         System.out.println(" ");
-        
+
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 2", it.search("A"));
         System.out.println(it.search("A"));
         System.out.println(" ");
-        
+
         it.remove("A");
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("$"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("$"));
         assertFuzzyEquals("T\r\n" + "# of nodes visited: 1", it.search("T"));
         assertFuzzyEquals("T\r\n" + "# of nodes visited: 1", it.search("T$"));
-        
+
         it = new DNADB();
         it.insert("ACCCCC");
-        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("A"));
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A$"));
-        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("ACCCCC$"));
-        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search("ACCCCC"));
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search(
+            "A"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("A$"));
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search(
+            "ACCCCC$"));
+        assertFuzzyEquals("ACCCCC\r\n" + "# of nodes visited: 1", it.search(
+            "ACCCCC"));
     }
+
+
     /**
      * Tests the simple version of test
      */
     public void testSimpleSearch() {
-        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("$"));
+        assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it
+            .search("$"));
         it.insert("A");
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
         it.insert("C");
@@ -292,7 +317,7 @@ public class DNAProjTest extends TestCase {
         it.insert("TG");
         it.insert("TA");
         it.insert("T");
-        it.insert("GA");        
+        it.insert("GA");
 
         assertFuzzyEquals("AA\r\n" + "# of nodes visited: 4", it.search("AA$"));
         assertFuzzyEquals("AT\r\n" + "# of nodes visited: 3", it.search("AT$"));
@@ -300,7 +325,8 @@ public class DNAProjTest extends TestCase {
             + "# of nodes visited: 8", it.search("AA"));
         assertFuzzyEquals("TA\r\n" + "TG\r\n" + "T\r\n"
             + "# of nodes visited: 7", it.search("T"));
-        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n" + "GA\r\n" + "TA\r\n" + "TG\r\n" + "T\r\n"
+        assertFuzzyEquals("AAAT\r\n" + "AAG\r\n" + "AA\r\n" + "AT\r\n" + "A\r\n"
+            + "GA\r\n" + "TA\r\n" + "TG\r\n" + "T\r\n"
             + "# of nodes visited: 21", it.search(""));
 
     }
@@ -352,7 +378,7 @@ public class DNAProjTest extends TestCase {
         it.insert("AA");
         it.insert("C");
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
-        assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "	 AA\r\n" + "  C\r\n"
+        assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "AA\r\n" + "  C\r\n"
             + "  E\r\n" + "  E\r\n" + "  E\r\n", it.print());
 
         it.insert("G");
@@ -531,14 +557,14 @@ public class DNAProjTest extends TestCase {
             + "      E\r\n" + "    E\r\n" + "    E\r\n" + "    E\r\n"
             + "    A\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n", it
                 .print());
-        assertFuzzyEquals("AAA\r\n" + "AAC\r\n" + "A\r\n" + "# of nodes visited: 16",
-            it.search(""));
+        assertFuzzyEquals("AAA\r\n" + "AAC\r\n" + "A\r\n"
+            + "# of nodes visited: 16", it.search(""));
         assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
         assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "  I\r\n" + "    AAC\r\n"
             + "    E\r\n" + "    E\r\n" + "    E\r\n" + "    A\r\n" + "  E\r\n"
             + "  E\r\n" + "  E\r\n" + "  E\r\n", it.print());
-        assertFuzzyEquals("AAC\r\n" + "A\r\n" + "# of nodes visited: 11", it.search(
-            ""));
+        assertFuzzyEquals("AAC\r\n" + "A\r\n" + "# of nodes visited: 11", it
+            .search(""));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         assertFuzzyEquals("tree dump:\r\n" + "AAC\r\n", it.print());
         assertFuzzyEquals("AAC\r\n" + "# of nodes visited: 1", it.search(""));

@@ -55,8 +55,8 @@ public class Flyweight implements Node {
     /**
      * Base case for the complex search function
      * 
-     * @param empty
-     *            string since this node isn't real
+     * @return
+     *         returns an empty string
      */
     public String searchAll() {
         DNADB.visited++;

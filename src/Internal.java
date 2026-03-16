@@ -232,12 +232,16 @@ public class Internal implements Node {
         switch (currChar) {
             case ('A'):
                 pointA = pointA.remove(sequence, currDepth);
+                break;
             case ('C'):
                 pointC = pointC.remove(sequence, currDepth);
+                break;
             case ('G'):
                 pointG = pointG.remove(sequence, currDepth);
+                break;
             case ('T'):
                 pointT = pointT.remove(sequence, currDepth);
+                break;
             default:
                 pointD = pointD.remove(sequence, 0);
 
