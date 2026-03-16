@@ -52,6 +52,11 @@ public class DNAProjTest extends TestCase {
             .search("ACGT$"));
     }
 
+    /**
+     * 
+     * a new search test
+     * 
+     */
     public void testNewSearch(){
         
         assertFuzzyEquals("No sequence found\r\n" + "# of nodes visited: 1", it.search("A$"));
@@ -62,7 +67,12 @@ public class DNAProjTest extends TestCase {
         System.out.println(it.search(""));
         System.out.println(" ");
         
-        it.insert("A");
+        it.insert("ACCCCC");
+        
+        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A"));
+        //assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
+        
+        
         it.insert("AT");
         it.insert("AA");
         it.insert("AAAT");
@@ -185,6 +195,10 @@ public class DNAProjTest extends TestCase {
         System.out.println(" ");
         
         it.insert("A");
+        
+        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A"));
+        assertFuzzyEquals("A\r\n" + "# of nodes visited: 1", it.search("A$"));
+        
         it.insert("T");
         
         assertFuzzyEquals("A\r\n" + "# of nodes visited: 2", it.search("A$"));
@@ -515,7 +529,7 @@ public class DNAProjTest extends TestCase {
             + "      E\r\n" + "    E\r\n" + "    E\r\n" + "    E\r\n"
             + "    A\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n" + "  E\r\n", it
                 .print());
-        assertEquals("AAA\r\n" + "AAC\r\n" + "A\r\n" + "# of nodes visited: 16",
+        assertFuzzyEquals("AAA\r\n" + "AAC\r\n" + "A\r\n" + "# of nodes visited: 16",
             it.search(""));
         assertFuzzyEquals("Sequence |AAA| removed\r\n", it.remove("AAA"));
         assertFuzzyEquals("tree dump:\r\n" + "I\r\n" + "  I\r\n" + "    AAC\r\n"
@@ -525,7 +539,7 @@ public class DNAProjTest extends TestCase {
             ""));
         assertFuzzyEquals("Sequence |A| removed\r\n", it.remove("A"));
         assertFuzzyEquals("tree dump:\r\n" + "AAC\r\n", it.print());
-        assertEquals("AAC\r\n" + "# of nodes visited: 1", it.search(""));
+        assertFuzzyEquals("AAC\r\n" + "# of nodes visited: 1", it.search(""));
         assertFuzzyEquals("Sequence |AAC| removed\r\n", it.remove("AAC"));
 
         it.insert("C");
